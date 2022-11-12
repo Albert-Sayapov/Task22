@@ -11,7 +11,7 @@ public class Main {
 
         Collection<Person> persons = new ArrayList<>();
 
-        for (int i = 0; i < 10_000_000; i++) {
+        for (int i = 0; i < 100; i++) {
             Sex sex = Sex.values()[new Random().nextInt(Sex.values().length)];
             String name;
             String surname;
@@ -41,7 +41,7 @@ public class Main {
         System.out.println("Количество несовершеннолетних = " + countTeenager);
 
         List<String> futureMilitary = persons.stream()
-                .filter(person -> surnames.contains(person.getSurname()))
+                .filter(person -> person.getSex().equals(Sex.MAN))
                 .filter(person -> (person.getAge() >= 18 && person.getAge() <= 27))
                 .map(person -> person.getSurname())
                 .collect(Collectors.toList());
