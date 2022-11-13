@@ -11,7 +11,7 @@ public class Main {
 
         Collection<Person> persons = new ArrayList<>();
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 10_000_000; i++) {
             Sex sex = Sex.values()[new Random().nextInt(Sex.values().length)];
             String name;
             String surname;
@@ -33,12 +33,10 @@ public class Main {
 
         long countTeenager = persons.stream()
                 .filter(person -> person.getAge() < 18)
-                .mapToInt(person -> person.getAge())
+                .mapToLong(person -> person.getAge())
                 .count();
 
-        System.out.println(persons);
-        System.out.println();
-        System.out.println("Количество несовершеннолетних = " + countTeenager);
+        //System.out.println("Количество несовершеннолетних = " + countTeenager);
 
         List<String> futureMilitary = persons.stream()
                 .filter(person -> person.getSex().equals(Sex.MAN))
@@ -46,8 +44,8 @@ public class Main {
                 .map(person -> person.getSurname())
                 .collect(Collectors.toList());
 
-        System.out.println();
-        System.out.println("Список призывников: " + "\n" + futureMilitary);
+//        System.out.println();
+//        System.out.println("Список призывников: " + "\n" + futureMilitary);
 
         List<String> peopleWithHigherEducation = persons.stream()
                 .filter(person -> {
@@ -61,8 +59,8 @@ public class Main {
                 .map(person -> person.getSurname())
                 .collect(Collectors.toList());
 
-        System.out.println();
-        System.out.println("Работоспособные люди с высшим образованием: " + "\n" + peopleWithHigherEducation);
+//        System.out.println();
+//        System.out.println("Работоспособные люди с высшим образованием: " + "\n" + peopleWithHigherEducation);
 
 
     }
